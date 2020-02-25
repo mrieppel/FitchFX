@@ -36,8 +36,8 @@ function parse(s) {
 	var s1 = [];
 	var s2 = [];
 	if(isQ(s)) {
-		s1 = parse(s.substring(4));
-		return s1.length ? [s.substring(0,4),s1] : [];
+		s1 = parse(s.substring(2));
+		return s1.length ? [s.substring(0,2),s1] : [];
 	}
 	if(isU(s[0])) {
 		s1 = parse(s.substring(1));
@@ -91,7 +91,7 @@ function isAbs(s) {
 // Determines if s begins with a quantifier, e.g. 'Ez(...)'
 function isQ(s) {
 	var q = ['E','A','\u2203','\u2200'];
-	if(s[0]=='(' && q.indexOf(s[1])>=0 && isV(s[2]) && s[3]==')') {
+	if(q.indexOf(s[0])>=0 && isV(s[1])) {
 		return true;
 	} else {return false;}
 }
@@ -168,7 +168,7 @@ function richardify(s) {
 	if(s=="") {
 		return s;
 	} else if(isQ(s)) {
-		return s[0]+ptou(s[1])+s[2]+s[3]+richardify(s.substring(4,s.length))	
+		return ptou(s[0])+s[1]+richardify(s.substring(2,s.length))	
 	} else if(isU(s[0])) {
 		return ptou(s[0])+richardify(s.substring(1,s.length));
 	} else if(s[0] =='(' && s[s.length-1]==')') {
@@ -233,12 +233,12 @@ function ptou(s) {
 // replaces unicode with latex
 function utox(c) {
 	switch(c) {
-		case '\u00AC' : return '\\enot';
-		case '\u2227' : return '\\eand';
-		case '\u2228' : return '\\eor';
-		case '\u2192' : return '\\eif';
-		case '\u2194' : return '\\eiff';
-		case '\u22A5' : return '\\ered';
+		case '\u00AC' : return '\\lnot';
+		case '\u2227' : return '\\land';
+		case '\u2228' : return '\\lor';
+		case '\u2192' : return '\\rightarrow';
+		case '\u2194' : return '\\leftrightarrow';
+		case '\u22A5' : return '\\bot';
 		case '\u2200': return '\\forall';
 		case '\u2203' : return '\\exists';
 		default: return c;

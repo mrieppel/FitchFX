@@ -205,7 +205,7 @@ function ckproof(f) {
 function export_proof() {
 	if(PROOF.length==0) {return errmess([0],'No proof to export.');}
 	var plain = document.getElementById('plain').checked;
-	var pretty = document.getElementById('pretty').checked;
+	var pretty = false; //document.getElementById('pretty').checked;
 	var latex = document.getElementById('latex').checked;
 	
 	var ocnt = PROOF.map(function(a) {return a.cnt.toString();});
@@ -243,7 +243,7 @@ function export_proof() {
 		for(var i=0;i<a.length;i++) {
 			pre = i==a.length-1 ? pre+ofrm[i] : pre+ofrm[i]+', ';
 		}
-		pre = pre+' \\vdash '+ocnl+'$\\\\\r\n\\vspace{1em}\r\n\r\n';
+		pre = pre+' \\vdash '+ocnl+'$\\\\\r\n\r\n';
 		proof = '\\begin{fitch}\r\n';
 		ofrm = mkofrm(odth,ofrm,'');
 		orul = orul.map(lxrul);
@@ -326,7 +326,7 @@ function import_proof() {
 	} else {
 		errmess([2],"Proof successfully imported. Proof is complete!");
 	}
-	document.getElementById('importarea').value = 'Paste a previously exported proof (in plain notation) here and import it by clicking the button. NOTE: you can edit a proof here, but you need to be careful about formatting.  E.g. make sure the proof begins with a "Problem: " line, that formulas contain outermost parentheses, and that there are at least two spaces separating each "column" of the proof, with no double spaces elsewhere.';
+	document.getElementById('importarea').value = 'Click the "Export" button to export a completed proof.  Proofs can be exported in either plain text notation or LaTeX.  Proofs exported in plain text can also be re-imported again later by pasting them into this text box and clicking the "import" button below. (Importing requires that the proof be in exactly the same format in which it was exported, including all spacing.)';
 	draw_conclusion();
 	draw();
 }

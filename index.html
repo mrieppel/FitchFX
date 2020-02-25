@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Fitch Proof Constructor</title>
+<title>FitchFX Proof Constructor</title>
 
 <!-- 
 The MIT License (MIT)
@@ -54,7 +54,7 @@ THE SOFTWARE.
 		<a href='javascript:void(0);' onclick='disp("app");'><strong>Construct</strong></a>
 		</td>
 		<td id='expm'>
-		<a href='javascript:void(0);' onclick='disp("exp");'><strong>Export / Import</strong></a>
+		<a href='javascript:void(0);' onclick='disp("exp");'><strong>Export</strong></a>
 		</td>
 		<td id='refm'>
 		<a href='javascript:void(0);' onclick='disp("ref");'><strong>Reference</strong></a>
@@ -186,8 +186,7 @@ THE SOFTWARE.
 	<tr>
 		<td><button type='button' value='Export' onclick='export_proof();'>Export</button></td>
 		<td><input type='radio' name='extype' id='plain' checked>Plain</td>
-		<td><input type='radio' name='extype' id='pretty'>Pretty Print</td>
-		<td><input type='radio' name='extype' id='latex'>LaTexify</td>
+		<td><input type='radio' name='extype' id='latex'>LaTeX</td>
 	</tr>
 	</table>
 </td></tr>
@@ -197,9 +196,7 @@ THE SOFTWARE.
 <tr><td>	
 	<table>
 	<tr>
-		<td><textarea id='importarea' rows='10' cols='90'>Click the "Export" button to export a completed proof.  
-		
-You can also paste a previously exported proof (in the plain text format) in this text area and import it by clicking the "Import Proof" button below. (NOTE: proofs to be imported must begin with a "Problem: " line, formulas must contain outermost parentheses, and there must be at least two spaces separating each "column" of the proof, with no double spaces elsewhere.)</textarea></td>
+		<td><textarea id='importarea' rows='10' cols='90'>Click the "Export" button to export a completed proof.  Proofs can be exported in either plain text notation or LaTeX.  Proofs exported in plain text can also be re-imported again later by pasting them into this text box and clicking the "import" button below. (Importing requires that the proof be in exactly the same format in which it was exported, including all spacing.)</textarea></td>
 	</tr>
 	<tr>	
 		<td><input type='button' value='Import Proof' onclick='import_proof();'></td>
@@ -222,7 +219,7 @@ You can also paste a previously exported proof (in the plain text format) in thi
 
 <br>
 <div class='note'>
-NOTE: the program lets you drop the outermost parentheses on formulas with a binary main connective, e.g. P>(Q&R) rather than (P>(Q&R)).  Since the letter 'v' is used for disjunction, it can't be used as a variable or individual constant.  Note also that quantifiers are enclosed by parentheses, e.g. (Ex)Rax rather than ExRax, or (Ax)(Fx>Gx) rather than Ax(Fx>Gx).
+NOTE: the program lets you drop the outermost parentheses on formulas with a binary main connective, e.g. P>(Q&R) rather than (P>(Q&R)).  Since the letter 'v' is used for disjunction, it can't be used as a variable or individual constant.
 </div>
 <br>
 
@@ -250,14 +247,14 @@ NOTE: the program lets you drop the outermost parentheses on formulas with a bin
 		<table class='info'>
 			<tr><th><a name='samplewff'>Sample Wffs</a></th></tr>
 			<tr><td>P</td></tr>
-			<tr><td>((GvH)&gt;F)</td></tr>
-			<tr><td>(#&gt;P)</td></tr>
+			<tr><td>((GvH) &gt; F)</td></tr>
+			<tr><td>(# &gt; (P<>~P))</td></tr>
 			<tr><td>Fa</td></tr>
-			<tr><td>(Fa &and; Rab)</td></tr>
-			<tr><td>(Ex)Rxb</td></tr>
-			<tr><td>(Ex)(Ay)(Rxy &lt;&gt; Ryx)</td></tr>
-			<tr><td>(Ax)((Fx &and; (Ey)Rxy) &gt; (Ey)(Fy v Ryx))</td></tr>
-			<tr><td>((Ax)(Fx &gt; (Ey)Rxy) &gt; (Ey)Gy)</td></tr>
+			<tr><td>(Fa &amp; Rab)</td></tr>
+			<tr><td>ExRxb</td></tr>
+			<tr><td>ExAy(Rxy &lt;&gt; Ryx)</td></tr>
+			<tr><td>Ax((Fx &amp; EyRxy) &gt; Ey(Fy v Ryx))</td></tr>
+			<tr><td>(Ax(Fx &gt; EyRxy) &gt; EyGy)</td></tr>
 		</table>
 
 </td>
@@ -265,7 +262,7 @@ NOTE: the program lets you drop the outermost parentheses on formulas with a bin
 
 
 <tr>
-<td><a href='javascript:void(0);' onclick='exp("srulc");' id='srulctrigger'>[+] Rules for Sentential Logic</a></td>
+<td><a href='javascript:void(0);' onclick='exp("srulc");' id='srulctrigger'>[+] Rules for Truth-Functional Logic</a></td>
 </tr>
 
 <tr>
@@ -434,7 +431,7 @@ NOTE: the order in which  rule lines are cited is important for multi-line rules
 
 
 <tr>
-<td><a href='javascript:void(0);' onclick='exp("qrulc");' id='qrulctrigger'>[+] Rules for Quantificational Logic</a></td>
+<td><a href='javascript:void(0);' onclick='exp("qrulc");' id='qrulctrigger'>[+] Rules for First-Order Logic</a></td>
 </tr>
 
 <tr>
@@ -442,7 +439,7 @@ NOTE: the order in which  rule lines are cited is important for multi-line rules
 <br>
 
 <div class="note">
-NOTE: as with the propositional rules, the order in which lines are cited matters for multi-line rules.
+NOTE: as with the truth-functional rules, the order in which lines are cited matters for multi-line rules.
 </div>
 <br>
 
@@ -455,9 +452,9 @@ NOTE: as with the propositional rules, the order in which lines are cited matter
 				<tr><td class='cntc'>j</td><td class='frmc'><div><div><div class='fbar'></div><p>t</p></div></div></td><td class='rulc'>Flag</td></tr>
 				<tr><td class='cntc'></td><td class='frmc'><div><div><p>:</p></div></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'>k</td><td class='frmc'><div><div><p>&phi;t</p></div></div></td><td class='rulc'></td></tr>
-				<tr><td class='cntc'>m</td><td class='frmc'><div><p>(Av)&phi;v</p></div></td><td class='rulc'><div>j-k AI</div></td></tr>
+				<tr><td class='cntc'>m</td><td class='frmc'><div><p>Av&phi;v</p></div></td><td class='rulc'><div>AI j-k</div></td></tr>
 				<tr><td colspan='4'></td></tr>
-				<tr><td colspan='4'>where t does not occur in (Av)&phi;v or any line available to line m.</td></tr>
+				<tr><td colspan='4'>where t does not occur in Av&phi;v or any line available to line m.</td></tr>
 			</table>
 		</td>
 
@@ -465,9 +462,9 @@ NOTE: as with the propositional rules, the order in which lines are cited matter
 		<td class='brd'>
 			<table class='rule'>
 				<tr><th colspan='2'>Rule of &forall;E</th></tr>
-				<tr><td class='cntc'>j</td><td class='frmc'><div><p>(Av)&phi;v</p></div></td><td class='rulc'></td></tr>
+				<tr><td class='cntc'>j</td><td class='frmc'><div><p>Av&phi;v</p></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'></td><td class='frmc'><div><p>:</p></div></td><td class='rulc'></td></tr>
-				<tr><td class='cntc'></td><td class='frmc'><div><p>&phi;t</p></div></td><td class='rulc'><div>j AE</div></td></tr>
+				<tr><td class='cntc'></td><td class='frmc'><div><p>&phi;t</p></div></td><td class='rulc'><div>AE j</div></td></tr>
 			</table>
 		</td>
 		
@@ -476,7 +473,7 @@ NOTE: as with the propositional rules, the order in which lines are cited matter
 				<tr><th colspan='2'>Rule of &exist;I</th></tr>
 				<tr><td class='cntc'>j</td><td class='frmc'><div><p>&phi;t</p></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'></td><td class='frmc'><div><p>:</p></div></td><td class='rulc'></td></tr>
-				<tr><td class='cntc'></td><td class='frmc'><div><p>(Ev)&phi;v</p></div></td><td class='rulc'><div>j EI</div></td></tr>
+				<tr><td class='cntc'></td><td class='frmc'><div><p>Ev&phi;v</p></div></td><td class='rulc'><div>EI j</div></td></tr>
 			</table>
 		</td>
 		
@@ -486,11 +483,11 @@ NOTE: as with the propositional rules, the order in which lines are cited matter
 		<td class='brd'>
 			<table class='rule'>
 				<tr><th colspan='4'>Rule of &exist;E</th></tr>
-				<tr><td class='cntc'>j</td><td class='frmc'><div><p>(Ev)&phi;v</p></div></td><td class='rulc'></td></tr>
+				<tr><td class='cntc'>j</td><td class='frmc'><div><p>Ev&phi;v</p></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'>k</td><td class='frmc'><div><div><div class='fbar'></div><p>&phi;t</p></div></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'></td><td class='frmc'><div><div><p>:</p></div></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'>l</td><td class='frmc'><div><div><p>&psi;</p></div></div></td><td class='rulc'></td></tr>
-				<tr><td class='cntc'>m</td><td class='frmc'><div><p>&psi;</p></div></td><td class='rulc'><div>j,k-l EE</div></td></tr>
+				<tr><td class='cntc'>m</td><td class='frmc'><div><p>&psi;</p></div></td><td class='rulc'><div>EE j,k-l</div></td></tr>
 				<tr><td colspan='4'></td></tr>
 				<tr><td colspan='4'>where t does not occur in &psi; or any line available to line m.</td></tr>
 			</table>
@@ -573,12 +570,8 @@ NOTE: as with the propositional rules, the order in which lines are cited matter
 <td id='exc'>
 	<br>
 
-	<div class="note">
-	Some (importable) sample proofs in the "plain" notation are <a href='samples/examples.html' target='_blank'>here</a>.  
-	<br><br>	
-	Note that proofs can also be exported in "pretty print" notation (with unicode logic symbols) or LaTeX. See <a href='samples/fitch.pdf' target='_blank'>this pdf</a> for an example of how Fitch proofs typeset in LaTeX look.  To typeset these proofs you will need Johann Klüwer's <a href='samples/fitch.sty' target='_blank'>fitch.sty</a>.  (If you don't want to install this file, you can just include it in the the same directory as your tex source file.)
-	
-	
+	<div class="note">	
+	Some (importable) sample proofs in the "plain" notation are <a href='samples/examples.html' target='_blank'>here</a>.  See <a href='samples/fitch.pdf' target='_blank'>this pdf</a> for an example of how Fitch proofs typeset in LaTeX look.  To typeset these proofs you will need Johann Klüwer's <a href='samples/fitch.sty' target='_blank'>fitch.sty</a>.  (If you don't want to install this file, you can just include it in the the same directory as your tex source file.)	
 	</div>
 	<br>
 </td>

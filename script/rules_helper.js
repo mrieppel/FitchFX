@@ -99,11 +99,11 @@ function isInst(t,s) {
 // creating instances (with '_' where the instantial variable/constant is to go).
 // So e.g. the parse tree of "Ex(Fx>Rxz)" will return a tree of "(F_>R_z)"
 function mkTmp(ar) {
-	var v = ar[0][2];
+	var v = ar[0][1];
 	return mk(ar[1]);
 	function mk(a) {
 		if(a.length==2 && isQ(a[0])) {
-			if(a[0][2]==v) {
+			if(a[0][1]==v) {
 				return [a[0],a[1]];
 			} else {
 				return [a[0],mk(a[1])];

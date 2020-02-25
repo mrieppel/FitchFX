@@ -6,7 +6,7 @@ function ckFLG(l,n) {
 	var flag = '[ERROR applying Flag rule]: ';
 	if(n==0) {
 		if(!PROOF.length) {
-			l.sig = [l.cnt];
+			l.sig = [0,l.cnt];
 		} else {
 			l.sig = PROOF[l.cnt-2].sig.concat([l.cnt]);
 		}
@@ -52,7 +52,7 @@ function ckAI(l,n) {
 		throw flag+'The second rule line must be the last line of the subproof beginning with the Flag line '+sa+".";
 	}
 	
-	if(l.tr.length!=2 || !isQ(l.tr[0]) || l.tr[0][1]!='A') {
+	if(l.tr.length!=2 || !isQ(l.tr[0]) || l.tr[0][0]!='A') {
 		throw flag+'The formula being derived must be universally quantified.';
 	}
 	
@@ -82,7 +82,7 @@ function ckAE(l,n) {
 	if(l.lin.length!=1) {
 		throw flag+'There is a problem with line citation. The rule must be applied to one line.';
 	}
-	if(PROOF[l.lin[0]-1].tr.length!=2 || !isQ(PROOF[l.lin[0]-1].tr[0]) || PROOF[l.lin[0]-1].tr[0][1]!='A') {
+	if(PROOF[l.lin[0]-1].tr.length!=2 || !isQ(PROOF[l.lin[0]-1].tr[0]) || PROOF[l.lin[0]-1].tr[0][0]!='A') {
 		throw flag+'The formula the rule is being applied to is not universally quantified.';
 	}
 	var iv = isInst(PROOF[l.lin[0]-1].tr,l.frm);
@@ -104,7 +104,7 @@ function ckEI(l,n) {
 	if(l.lin.length!=1) {
 		throw flag+'There is a problem with line citation. The rule should be applied to one line.';
 	}
-	if(l.tr.length!=2 || !isQ(l.tr[0]) || l.tr[0][1]!='E') {
+	if(l.tr.length!=2 || !isQ(l.tr[0]) || l.tr[0][0]!='E') {
 		throw flag+'The formula being derived is not existentially quantified.'; 
 	}
 	var iv = isInst(l.tr,PROOF[l.lin[0]-1].frm);
@@ -123,14 +123,14 @@ function ckEE(l,n) {
 	var flag = '[ERROR applying '+gRul(l.rul)+' to lines '+linD(l.lin)+']: ';
 	
 	if(l.lin.length!=4 || l.lin[2]!="-") {
-		throw flag+'There is a problem with line citation.  The rule must be applied to a line containing a existential statement and a subproof (citation of the form "j-k").';
+		throw flag+'There is a problem with line citation.  The rule must be applied to a line containing a existential statement and to a subproof (citation of the form "j-k").';
 	}
 	
 	var ex = l.lin[0], // line of the existential
 		sa = l.lin[1], // line of subproof assumption
 		sc = l.lin[3]; // line of subproof conclusion
 	
-	if(PROOF[ex-1].tr.length!=2 || !isQ(PROOF[ex-1].tr[0]) || PROOF[ex-1].tr[0][1]!='E') {
+	if(PROOF[ex-1].tr.length!=2 || !isQ(PROOF[ex-1].tr[0]) || PROOF[ex-1].tr[0][0]!='E') {
 		throw flag+'The formula on the first rule line must be an existentially quantified formula.';
 	}
 	

@@ -16,14 +16,13 @@ Problem: (P > Q) |- (P > (A > Q))
 6  |   (P > (A > Q))    >I  2-5
 
 
-Problem: (P & ~P) |- Q
+Problem:  |- ~(P & ~P)
 
-1  |_  (P & ~P)    Premise
-2  | |_  ~Q        Assumption
-3  | |   P         &E  1
-4  | |   ~P        &E  1
-5  | |   #         ~E  3,4
-6  |   Q           IP  2-5
+1  | |_  (P & ~P)    Assumption
+2  | |   P           &E  1
+3  | |   ~P          &E  1
+4  | |   #           ~E  2,3
+5  |   ~(P & ~P)     ~I  1-4
 
 
 Problem: (A v B) |- ~(~A & ~B)
@@ -40,33 +39,33 @@ Problem: (A v B) |- ~(~A & ~B)
 10  |   ~(~A & ~B)     ~I  2-9
 
 
-Problem: (A v (Ex)Fx) |- (Ex)(A v Fx)
+Problem: (A v ExFx) |- Ex(A v Fx)
 
-1   |_  (A v (Ex)Fx)        Premise
-2   | |_  A                 Assumption
-3   | |   (A v Fa)          vI  2
-4   | |   (Ex)(A v Fx)      EI  3
-5   | |_  (Ex)Fx            Assumption
-6   | | |_  Fa              Assumption
-7   | | |   (A v Fa)        vI  6
-8   | | |   (Ex)(A v Fx)    EI  7
-9   | |   (Ex)(A v Fx)      EE  5,6-8
-10  |   (Ex)(A v Fx)        vE  1,2-4,5-9
+1   |_  (A v ExFx)        Premise
+2   | |_  A               Assumption
+3   | |   (A v Fa)        vI  2
+4   | |   Ex(A v Fx)      EI  3
+5   | |_  ExFx            Assumption
+6   | | |_  Fa            Assumption
+7   | | |   (A v Fa)      vI  6
+8   | | |   Ex(A v Fx)    EI  7
+9   | |   Ex(A v Fx)      EE  5,6-8
+10  |   Ex(A v Fx)        vE  1,2-4,5-9
 
 
-Problem:  |- (Ax)(Ay)((Fx & ~Fy) > ~x=y)
+Problem:  |- AxAy((Fx & ~Fy) > ~x=y)
 
-1   |_  a                            Flag
-2   | |_  b                          Flag
-3   | | |_  (Fa & ~Fb)               Assumption
-4   | | | |_  a=b                    Assumption
-5   | | | |   Fa                     &E  3
-6   | | | |   ~Fb                    &E  3
-7   | | | |   Fb                     =E  4,5
-8   | | | |   #                      ~E  6,7
-9   | | |   ~a=b                     ~I  4-8
-10  | |   ((Fa & ~Fb) > ~a=b)        >I  3-9
-11  |   (Ay)((Fa & ~Fy) > ~a=y)      AI  2-10
-12    (Ax)(Ay)((Fx & ~Fy) > ~x=y)    AI  1-11
+1   | |_  a                        Flag
+2   | | |_  b                      Flag
+3   | | | |_  (Fa & ~Fb)           Assumption
+4   | | | | |_  a=b                Assumption
+5   | | | | |   Fa                 &E  3
+6   | | | | |   ~Fb                &E  3
+7   | | | | |   Fb                 =E  4,5
+8   | | | | |   #                  ~E  6,7
+9   | | | |   ~a=b                 ~I  4-8
+10  | | |   ((Fa & ~Fb) > ~a=b)    >I  3-9
+11  | |   Ay((Fa & ~Fy) > ~a=y)    AI  2-10
+12  |   AxAy((Fx & ~Fy) > ~x=y)    AI  1-11
 </pre>
 </body>
