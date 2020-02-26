@@ -17,9 +17,9 @@ Here's a brief description of the content of the various javascript files:
 
 * `script/rules_ql.js`: code implementing rules of quantificational logic.
 
-* `script/rules_siti_pl.js`: code implementing sequent/theorem introduction (SI/TI) rules.
+* `script/rules_siti_pl.js`: code implementing derived rules.
 
-* `samples/`: contains some sample proofs that can be imported into the program.  The program will export proofs in LaTex markup that compiles using Johan Klüwer's fitch.sty (also included).
+* `samples/`: contains some sample proofs that can be imported into the program.  The program will export proofs in LaTeX markup that compiles using Johan Klüwer's fitch.sty (also included).
 
 * `script/ui.js`: code for the user interface, i.e. to dynamically change which menu item ("Construct Proof", "Export", and "Reference") is active.
 
