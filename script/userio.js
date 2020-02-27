@@ -226,7 +226,7 @@ function export_proof() {
 			pre = i==a.length-1 ? pre+ofrm[i] : pre+ofrm[i]+', ';
 		}
 		pre = pre+' |- '+ocnl+'\r\n\r\n';
-		ofrm = mkofrm(odth,ofrm,'  ');
+		ofrm = mkofrm(odth,ofrm,' ');
 		var mc = max(ocnt)+2;
 		var mf = max(ofrm)+4;
 		for(var i=0;i<PROOF.length;i++) {
