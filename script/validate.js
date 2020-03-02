@@ -53,7 +53,7 @@ function ckRest(l,n) {
   	else if(r=='AE') {return ckAE(l,n);}
  	else if(r=='=I') {return ckIDI(l,n);}
   	else if(r=='=E') {return ckIDE(l,n);} 
-  	else if(r=='(EFQ)') {return ckEFQ(l,n);}
+  	else if(r=='(EX)') {return ckEX(l,n);}
   	else if(r=='(QS)') {return ckQS(l,n);}
   	else if(r=='(AV)') {return ckAV(l,n);}
   	else if(r=='(Com)') {return ckCOM(l,n);}

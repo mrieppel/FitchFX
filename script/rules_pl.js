@@ -444,9 +444,9 @@ function ckDN(l,n) {
 	}
 }
 
-// EFQ: Ex Falso Quodlibet
-function ckEFQ(l,n) {
-	var flag = '[ERROR applying EFQ to line '+l.lin.join(',')+']: ';
+// EX: Explosion (aka Ex Falso Quodlibet)
+function ckEX(l,n) {
+	var flag = '[ERROR applying EX to line '+l.lin.join(',')+']: ';
 	if(n==0) {fillND(l);}
 	
 	if(l.lin.length!=1) {
