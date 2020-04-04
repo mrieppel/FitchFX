@@ -4,10 +4,10 @@
 // Main SI checking function
 function ckSI(l,n) {
 	var flag = '[ERROR applying '+gRul(l.rul)+' to line(s) '+l.lin.join(',')+']: ';
-	
+
 	if(n==0) { // fill remaining line attributes
 		if(l.seq.length==1) { // treat theorems special because they may begin a proof
-			l.sig = !PROOF.length ? [] : PROOF[l.cnt-2].sig.slice(0);
+			l.sig = !PROOF.length ? [0] : PROOF[l.cnt-2].sig.slice(0);
 			l.dth = l.sig.length;
 			l.avl = gtAvl(l);
 			l.frv = freeVars(l.tr);
@@ -17,7 +17,7 @@ function ckSI(l,n) {
 	if(l.lin.length!=(l.seq.length-1)) {
 		throw flag+'The rule is being applied to an inappropriate number of lines.';
 	}
-	
+
 	if(l.seq.length==1) { // for theorems e.g. TI(LEM)
 		var x = match(parse(l.seq[0]),l.tr); // try to match line to sequent
 		if(!x[0]) {nope();} // match failed
@@ -39,7 +39,7 @@ function ckSI(l,n) {
 		if(!z[0]) {nope();}
 		if(clash(x[1].concat(y[1],z[1]))) {nope();}
 	}
-	
+
 	x = areAvl(l.lin,l.avl);
 	if(x>=0) {
 		throw flag+'Rule line '+x+' is not available at this stage of the proof.  The following lines are available: '+l.avl.join(',');
@@ -56,7 +56,7 @@ function ckSIbi(l,n) {
 	if(l.lin.length!=1) {
 		throw flag+'The rule is being applied to an inappropriate number of lines.';
 	}
-	
+
 	var m1 = match(parse(l.seq[0]),l.tr); // tests if target formula matches first part of sequent
 	if(!m1[0]) {// if not
 		m1 = match(parse(l.seq[1]),l.tr); // match target formula to second part of sequent
@@ -78,7 +78,7 @@ function ckSIbi(l,n) {
 function ckDNbi(l,n) {
 	var flag = '[ERROR applying '+gRul(l.rul)+' to line '+l.lin.join(',')+']: ';
 	if(n==0) {fillND(l);}
-	
+
 	if(l.lin.length!=1) {
 		throw flag+'Rule must be applied to one line.';
 	}
@@ -94,23 +94,23 @@ function ckDNbi(l,n) {
 // Checks SI(Com)
 function ckCOM(l,n) {
 	var flag = '[ERROR applying '+gRul(l.rul)+' to line(s) '+l.lin.join(',')+']: ';
-	
-	if(l.lin.length!=1){ 
+
+	if(l.lin.length!=1){
 		throw flag+'The rule is being applied to an inappropriate number of lines.';
 	}
-	
+
 	var cn = ['&','v','<>'];
 	var c1 = l.tr[1]; // main binary connective in input line
 	var c2 = PROOF[l.lin-1].tr[1]; // main binary connective in rule line
 	if(c1==undefined || c2==undefined || c1!=c2) {throw flag+'The formula being derived does not follow by '+gRul(l.rul)+'.'}
 	if(cn.indexOf(c1)<0) {throw flag+c1+' is not a commutative connective.';}
-	
+
 	l.seq = l.seq.map(function(x) {return x.replace("*",c1);});
 	ckSI(l,n);
 }
 
 
-// Checks SI(SDN1) 
+// Checks SI(SDN1)
 function ckSDN1(l,n) {
 	var flag = '[ERROR applying '+gRul(l.rul)+' to line '+l.lin.join(',')+']: ';
 	if(n==0) {fillND(l);}
@@ -121,13 +121,13 @@ function ckSDN1(l,n) {
 	var c = l.tr[1]; // main binary connective
 	var c2 = PROOF[l.lin[0]-1].tr[1]; // main binary connective in formula on rule line
 	if(c==undefined || c2==undefined || c!=c2) {nope();}
-	
+
 	var templates = ['(A'+c+'B)','(~~A'+c+'B)','(A'+c+'~~B)','(~~A'+c+'~~B)'];
 	var dmatch = get_match(templates,l.tr); // will hold the match for the formula on the rule line
 	var fmatch = get_match(templates,PROOF[l.lin[0]-1].tr); // will hold the match for the formula being derived
 	if(!fmatch[0] || !dmatch[0]) {nope();}
 	if(clash(fmatch[1].concat(dmatch[1]))) {nope();}
-	
+
 	x = areAvl(l.lin,l.avl);
 	if(x>=0) {
 		throw flag+'Rule line '+x+' is not available at this stage of the proof.  The following lines are available: '+l.avl.join(',');
@@ -148,13 +148,13 @@ function ckSDN2(l,n) {
 	var c = l.tr[1][1]; // main binary connective
 	var c2 = PROOF[l.lin[0]-1].tr[1][1]; // main binary connective in formula on rule line
 	if(c==undefined || c2==undefined || c!=c2 || l.tr[0]!='~' || PROOF[l.lin[0]-1].tr[0]!='~') {nope();}
-	
+
 	var templates = ['~(A'+c+'B)','~(~~A'+c+'B)','~(A'+c+'~~B)','~(~~A'+c+'~~B)'];
 	var dmatch = get_match(templates,l.tr); // will hold the match for the formula on the rule line
 	var fmatch = get_match(templates,PROOF[l.lin[0]-1].tr); // will hold the match for the formula being derive
 	if(!fmatch[0] || !dmatch[0]) {nope();}
 	if(clash(fmatch[1].concat(dmatch[1]))) {nope();}
-	
+
 	x = areAvl(l.lin,l.avl);
 	if(x>=0) {
 		throw flag+'Rule line '+x+' is not available at this stage of the proof.  The following lines are available: '+l.avl.join(',');
@@ -178,8 +178,8 @@ function get_match(templates,tree) {
 
 
 // String -> [String]
-// Extracts the SI sequent (as an array) from the 'value' attribute of the selected 
-// rule (see the html <option> elements).  E.g. from 'SI(MT):(A>B),~B,~A' will return 
+// Extracts the SI sequent (as an array) from the 'value' attribute of the selected
+// rule (see the html <option> elements).  E.g. from 'SI(MT):(A>B),~B,~A' will return
 // ['(A>B)','~B','~A']
 function getSeq(s) {
 	var o = '';
@@ -207,7 +207,7 @@ function getSeqHead(s) {
 // against that template.  Returns an array with the first element 'true' if
 // t2 matches the template, and the second element a "dictionary" of the matches.
 // Returns an array with the first element 'false' if t2 doesn't match the template.
-// E.g. if the template is "(A&B)", it will match any t2 that is a conjunction, and 
+// E.g. if the template is "(A&B)", it will match any t2 that is a conjunction, and
 // give a dictionary with 'A' assigned to the first conjunct of t2 and 'B' assigned
 // to the second conjunct of t2.  So match(parse("(A&B)"),parse("((F>G)&D)")) will
 // return [true,[['A','(F>G)'],['B','D']]].
@@ -232,7 +232,7 @@ function match(t1,t2) {
 // Dictionary -> Boolean
 // Checks a "dictionary" element of the match function to see if there are any clashes,
 // where a clash occurs if the dictionary matches a certain template variable to different
-// strings.  If there is a clash it returns 'true', if not it returns 'false'. E.g. 
+// strings.  If there is a clash it returns 'true', if not it returns 'false'. E.g.
 // [['A','F>G'],['A','D']] contains a clash, but [['A','F>G'],['A','F>G']] does not.
 function clash(ar) {
 	var a1 = ar[0];

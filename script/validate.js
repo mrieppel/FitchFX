@@ -22,8 +22,8 @@ function ckSyn(l) {
 }
 
 // Takes the input line and dispatches it to the appropriate rule checking function.
-// If the second parameter n is 0, the extra line attributes (sig, avl etc.) are 
-// filled in by the relevant rule checking function, and if n is 1 the current 
+// If the second parameter n is 0, the extra line attributes (sig, avl etc.) are
+// filled in by the relevant rule checking function, and if n is 1 the current
 // settings of the attributes are used (if line is being checked rather than entered)
 function ckRest(l,n) {
 	var x = 0;
@@ -51,8 +51,8 @@ function ckRest(l,n) {
   	else if(r=='EE') {return ckEE(l,n);}
   	else if(r=='AI') {return ckAI(l,n);}
   	else if(r=='AE') {return ckAE(l,n);}
- 	else if(r=='=I') {return ckIDI(l,n);}
-  	else if(r=='=E') {return ckIDE(l,n);} 
+ 		else if(r=='=I') {return ckIDI(l,n);}
+  	else if(r=='=E') {return ckIDE(l,n);}
   	else if(r=='(EX)') {return ckEX(l,n);}
   	else if(r=='(QS)') {return ckQS(l,n);}
   	else if(r=='(AV)') {return ckAV(l,n);}
@@ -108,7 +108,7 @@ function linArr(s) {
 	var ar = s.split(','),
 		t = [],
 		out = [];
-		
+
 	for(var i=0;i<ar.length;i++) {
 		if(ar[i].indexOf('-')<0) {
 			out.push(parseInt(ar[i]));
