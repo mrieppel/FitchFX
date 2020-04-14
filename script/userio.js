@@ -186,7 +186,6 @@ function ckproof(f) {
 	}
 	var lastln = PROOF[PROOF.length-1];
 	for(var i=0;i<lastln.sig.length;i++) {
-		console.log('hi');
 		if(lastln.sig[i]!=0) {
 			reply = 'WARNING: proof is incomplete.  The final line of your proof depends on line '+lastln.sig[i]+', which is not a Premise!';
 			return f==1 ? reply : errmess([0],reply);
@@ -226,7 +225,7 @@ function export_proof() {
 			pre = i==a.length-1 ? pre+ofrm[i] : pre+ofrm[i]+', ';
 		}
 		pre = pre+' |- '+ocnl+'\r\n\r\n';
-		ofrm = mkofrm(odth,ofrm,' ');
+		ofrm = mkofrm(odth,ofrm,'  ');
 		var mc = max(ocnt)+2;
 		var mf = max(ofrm)+4;
 		for(var i=0;i<PROOF.length;i++) {
