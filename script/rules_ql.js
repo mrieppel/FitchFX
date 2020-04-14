@@ -17,7 +17,7 @@ function ckFLG(l,n) {
 
 	var freevars = frvList(l.avl);
 	if(freevars.indexOf(l.frm)>=0) {
-		throw flag+'Flagging violation.  The term \''+l.frm+'\' you are attempting to flag already occurs outside the subproof you are attempting to open (as part of an undischarged assumption or premise).';
+		throw flag+'Flagging violation.  The term \''+l.frm+'\' you are attempting to flag already occurs outside the subproof you are attempting to open (in an undischarged assumption or premise).';
 	}
 }
 
@@ -161,7 +161,7 @@ function ckEE(l,n) {
 
 	var freevars = frvList(PROOF[sa-1].avl);
 	if(freevars.indexOf(iv)>=0) {
-		throw flag+'Flagging violation.  The flagged term \''+iv+'\' introduced in the assumption you are citing already occurs outside the subproof (as part of an undischarged assumption or premise).'
+		throw flag+'Flagging violation.  The flagged term \''+iv+'\' introduced in the assumption you are citing already occurs outside the subproof (in an undischarged assumption or premise).'
 	}
 
 	if(!same(l.sig,PROOF[sc-1].sig.slice(0,PROOF[sc-1].sig.length-1))) {

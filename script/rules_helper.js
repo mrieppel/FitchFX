@@ -67,13 +67,13 @@ function same(s1,s2) {
 }
 
 // [Int] -> [Char]
-// Takes a list of line numbers and returns a list of any free variables occurring in assumptions among those lines
+// Takes a list of line numbers and returns a list of any free variables occurring in premises or assumptions (including Flag-ing assumptions) among those lines.
 function frvList(l) {
 	var out = [];
 	for(var i=0;i<l.length;i++) {
-		if(PROOF[l[i]-1].rul == "Assumption" || PROOF[l[i]-1].rul == "Premise") {
+		var r = PROOF[l[i]-1].rul;
+		if(r == "Assumption" || r == "Premise" || r == "Flag") {
 			out = out.concat(PROOF[l[i]-1].frv);
-			console.log("Line "+l[i]+" has var "+PROOF[l[i]-1].frv)
 		}
 	}
 	return out;
