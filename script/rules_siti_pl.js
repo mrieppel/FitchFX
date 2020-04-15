@@ -76,13 +76,16 @@ function ckSIbi(l,n) {
 
 // Checks SI(DN)
 function ckDNbi(l,n) {
+	console.log('hi', l, n);
 	var flag = '[ERROR applying '+gRul(l.rul)+' to line '+l.lin.join(',')+']: ';
 	if(n==0) {fillND(l);}
 
 	if(l.lin.length!=1) {
 		throw flag+'Rule must be applied to one line.';
 	}
-	if(!(l.frm != '~~'+PROOF[l.lin[0]-1].frm) && !('~~'+l.frm != PROOF[l.lin[0]-1].frm)) {
+	console.log(PROOF[l.lin[0]-1].frm);
+	console.log(PROOF[l.lin[0]-1].frm);
+	if((l.frm != '~~'+PROOF[l.lin[0]-1].frm) && ('~~'+l.frm != PROOF[l.lin[0]-1].frm)) {
 		throw flag+'The formula on line '+l.lin[0]+' must be the double negation of the formula being derived, or vice versa.';
 	}
 	x = areAvl(l.lin,l.avl);
