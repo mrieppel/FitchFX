@@ -1,7 +1,7 @@
 FitchFX
 =======
 
-FitchFX is a web app written in JavaScript that lets users construct proofs in a Fitch-style natural deduction system, and export verified proofs in plain text or LaTeX.  It is a modification of the [FitchJS](https://github.com/mrieppel/fitchjs) program, incorporating the notation and rules I use in my version of the forallx textbook, [forall x @syr](https://github.com/mrieppel/forallxsyr). The fitch proofs are drawn using the [D3.js](http://d3js.org/) library.  If you come across any bugs, please email at: mrieppel at gmail dot com.
+FitchFX is a web app written in JavaScript that lets users construct proofs in a Fitch-style natural deduction system, and export verified proofs in plain text or LaTeX.  It is a modification of the [FitchJS](https://github.com/mrieppel/fitchjs) program, incorporating the notation and rules I use in my version of the forallx textbook, [forall x @syr](https://github.com/mrieppel/forallxsyr). The fitch proofs are drawn using the [D3.js](http://d3js.org/) library.  If you come across any bugs, please email me at: mrieppel at gmail dot com.
 
 A live version of the program is [here](https://mrieppel.github.io/FitchFX/).
 
