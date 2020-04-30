@@ -91,7 +91,7 @@ function isAbs(s) {
 // Determines if s begins with a quantifier, e.g. 'Ez(...)'
 function isQ(s) {
 	var q = ['E','A','\u2203','\u2200'];
-	if(q.indexOf(s[0])>=0 && isV(s[1])) {
+	if(s.length>2 && q.indexOf(s[0])>=0 && isV(s[1]) && !isB(s[2]) && !(isT(s[2]) && s[3]!=='=')) {
 		return true;
 	} else {return false;}
 }
