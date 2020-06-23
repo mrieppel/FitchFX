@@ -17,7 +17,7 @@ function ckFLG(l,n) {
 
 	var freevars = frvList(l.avl);
 	if(freevars.indexOf(l.frm)>=0) {
-		throw flag+'Flagging violation.  The term \''+l.frm+'\' you are attempting to flag already occurs outside the subproof you are attempting to open (in an undischarged assumption or premise).';
+		throw flag+'Flagging violation.  The term \''+l.frm+'\' you are attempting to flag already occurs outside the subproof you are attempting to open.';
 	}
 }
 
@@ -82,6 +82,9 @@ function ckAE(l,n) {
 	if(l.lin.length!=1) {
 		throw flag+'There is a problem with line citation. The rule must be applied to one line.';
 	}
+	console.log(PROOF[l.lin[0]-1].tr.length!=2);
+	console.log(!isQ(PROOF[l.lin[0]-1].tr[0]));
+	console.log(PROOF[l.lin[0]-1].tr[0][0]!='A');
 	if(PROOF[l.lin[0]-1].tr.length!=2 || !isQ(PROOF[l.lin[0]-1].tr[0]) || PROOF[l.lin[0]-1].tr[0][0]!='A') {
 		throw flag+'The formula the rule is being applied to is not universally quantified.';
 	}
@@ -161,7 +164,7 @@ function ckEE(l,n) {
 
 	var freevars = frvList(PROOF[sa-1].avl);
 	if(freevars.indexOf(iv)>=0) {
-		throw flag+'Flagging violation.  The flagged term \''+iv+'\' introduced in the assumption you are citing already occurs outside the subproof (in an undischarged assumption or premise).'
+		throw flag+'Flagging violation.  The flagged term \''+iv+'\' introduced in the assumption you are citing already occurs outside the subproof.'
 	}
 
 	if(!same(l.sig,PROOF[sc-1].sig.slice(0,PROOF[sc-1].sig.length-1))) {
@@ -207,6 +210,7 @@ function ckIDE(l,n) {
 	}
 }
 
+// NOTE: CHECK THIS RULE BEFORE COMMITTING AGAIN console.log('check!')
 // SI(QS): Quantifier Shift
 function ckQS(l,n) {
 	var flag = '[ERROR applying SI(QS) to line '+l.lin[0]+']: ';

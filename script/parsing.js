@@ -35,7 +35,7 @@ function parse(s) {
 	if(s=='') {return [];}
 	var s1 = [];
 	var s2 = [];
-	if(isQ(s)) {
+	if(parseQ(s)) {
 		s1 = parse(s.substring(2));
 		return s1.length ? [s.substring(0,2),s1] : [];
 	}
@@ -88,12 +88,25 @@ function isAbs(s) {
 	return abs.indexOf(s)>=0;
 }
 // String -> Bool
-// Determines if s begins with a quantifier, e.g. 'Ez(...)'
-function isQ(s) {
+// Determines if s begins with a quantifier, e.g. 'Ez(...)'.  NOTE: this is more complex than
+// in FitchJS due to the quantifier syntax without parentheses.  E.g the following should return true:
+// AxEx, ExAx, AxAx, Axx=y; but the following should return false: Ax, Ex, Axx, AxyEx.
+function parseQ(s) {
 	var q = ['E','A','\u2203','\u2200'];
 	if(s.length>2 && q.indexOf(s[0])>=0 && isV(s[1]) && !isB(s[2]) && !(isT(s[2]) && s[3]!=='=')) {
 		return true;
 	} else {return false;}
+}
+
+// String -> Bool
+// Checks if the first two characters in a string match a possible quantifier, something
+// like: Ax, Ex, Ay, Ey etc.  This function is used by rule checking functions and some
+// parsing functions above, but not by the parse() function which uses parseQ().
+function isQ(s) {
+		var q = ['E','A','\u2203','\u2200'];
+		if(q.indexOf(s[0])>=0 && isV(s[1])) {
+			return true;
+		} else {return false;}
 }
 
 // String -> Bool
@@ -167,7 +180,7 @@ function isC(c) {
 function richardify(s) {
 	if(s=="") {
 		return s;
-	} else if(isQ(s)) {
+	} else if(parseQ(s)) {
 		return ptou(s[0])+s[1]+richardify(s.substring(2,s.length))
 	} else if(isU(s[0])) {
 		return ptou(s[0])+richardify(s.substring(1,s.length));
