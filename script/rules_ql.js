@@ -210,7 +210,7 @@ function ckIDE(l,n) {
 	}
 }
 
-// NOTE: CHECK THIS RULE BEFORE COMMITTING AGAIN console.log('check!')
+
 // SI(QS): Quantifier Shift
 function ckQS(l,n) {
 	var flag = '[ERROR applying SI(QS) to line '+l.lin[0]+']: ';
@@ -247,7 +247,7 @@ function ckQS(l,n) {
 	}
 	function flip(q) {
 		var dic = {A: 'E',E: 'A'};
-		return '('+dic[q[1]]+q[2]+')';
+		return dic[q[0]]+q[1];
 	}
 }
 

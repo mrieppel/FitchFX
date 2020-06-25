@@ -87,6 +87,7 @@ function isAbs(s) {
 	var abs = ['#','\u22A5']
 	return abs.indexOf(s)>=0;
 }
+
 // String -> Bool
 // Determines if s begins with a quantifier, e.g. 'Ez(...)'.  NOTE: this is more complex than
 // in FitchJS due to the quantifier syntax without parentheses.  E.g the following should return true:
@@ -99,12 +100,14 @@ function parseQ(s) {
 }
 
 // String -> Bool
-// Checks if the first two characters in a string match a possible quantifier, something
-// like: Ax, Ex, Ay, Ey etc.  This function is used by rule checking functions and some
-// parsing functions above, but not by the parse() function which uses parseQ().
+// Checks if the first two characters in a string match a quantifier, something
+// like: Ax, Ex, Ay, Ey etc.  This function is used by rule checking functions and
+// the unparse() functions above, but not by parse() which uses the more sophisticated
+// parseQ().  That is: isQ() generally just gets used to check if the characters
+// at some parse tree node match a quantifier.
 function isQ(s) {
 		var q = ['E','A','\u2203','\u2200'];
-		if(q.indexOf(s[0])>=0 && isV(s[1])) {
+		if(s.length>=2 && q.indexOf(s[0])>=0 && isV(s[1])) {
 			return true;
 		} else {return false;}
 }
