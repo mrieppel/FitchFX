@@ -21,6 +21,18 @@ vertical-align:bottom;
 #githublink a:hover {color:#999;text-decoration:none;}  /* mouse over link */
 #githublink a:active {color:#999;text-decoration:none;}  /* selected link */
 
+
+/* page title */
+
+#titleline {
+text-align:center;
+font-size:18pt;
+margin-bottom:30px;
+}
+
+/* links */
+
+
 a:link {color:#4B2EDE;text-decoration:none;}      /* unvisited link */
 a:visited {color:#4B2EDE;text-decoration:none;}  /* visited link */
 a:hover {color:#4B2EDE;text-decoration:none;}  /* mouse over link */
@@ -124,7 +136,7 @@ font-size:large;
 }
 
 #reft a {
-text-decoration:none;	
+text-decoration:none;
 }
 
 #sync, #srulc, #qrulc, #drulc, #exc {
