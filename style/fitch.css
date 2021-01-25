@@ -139,7 +139,7 @@ font-size:large;
 text-decoration:none;
 }
 
-#sync, #srulc, #qrulc, #drulc, #exc {
+#sync, #allrulc, #srulc, #qrulc, #drulc, #exc {
 display:none;
 }
 

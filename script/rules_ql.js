@@ -13,11 +13,14 @@ function ckFLG(l,n) {
 		l.dth = l.sig.length;
 		l.avl = gtAvl(l);
 		l.frv = [l.frm];
+		if(hasFreeVar(l.frv)) {throw "[ERROR]: the formula "+l.frm+" contains a free variable.";}
 	}
-
+	if(!isC(l.frm)) {
+		throw flag+'Flagging  violation.  The term \''+l.frm+'\' you are attempting to flag is a variable, not a name.  Use a letter a-t.';
+	}
 	var freevars = frvList(l.avl);
 	if(freevars.indexOf(l.frm)>=0) {
-		throw flag+'Flagging violation.  The term \''+l.frm+'\' you are attempting to flag already occurs outside the subproof you are attempting to open.';
+		throw flag+'Flagging violation.  The name \''+l.frm+'\' you are attempting to flag already occurs outside the subproof you are attempting to open.';
 	}
 }
 
@@ -31,6 +34,7 @@ function ckAI(l,n) {
 		l.dth = l.sig.length;
 		l.avl = gtAvl(l);
 		l.frv = freeVars(l.tr);
+		if(hasFreeVar(l.frv)) {throw "[ERROR]: the formula "+l.frm+" contains a free variable.";}
 	}
 
 	if(l.lin.length!=3 || l.lin[1]!="-") {
@@ -53,18 +57,18 @@ function ckAI(l,n) {
 	}
 
 	if(l.tr.length!=2 || !isQ(l.tr[0]) || l.tr[0][0]!='A') {
-		throw flag+'The formula being derived must be universally quantified.';
+		throw flag+'The formula you are attempting to derive is not a universally quantified sentence.';
 	}
 
 	var iv=isInst(l.tr,PROOF[sc-1].frm);
 	if(iv=='_') {
-		throw flag+'The formula that concludes the cited subproof is not an instance of the universal being derived.';
+		throw flag+'The formula that concludes the subproof is not an instance of the universal formula being derived.';
 	}
 	if(iv!='+' && iv!=PROOF[sa-1].frm) { // the first test is to allow vacuous quantification
-		throw flag+'The term being generalized on must be the one flagged at the beginning of the subproof.';
+		throw flag+'The name being generalized on must be the one flagged at the beginning of the subproof.';
 	}
 	if(l.frv.indexOf(iv)>=0) {
-		throw flag+'Every occurrence of the term \''+iv+'\' in line '+sc+' has to be replaced with the variable bound by the quantifier being introduced.';
+		throw flag+'Every occurrence of the name \''+iv+'\' on line '+sc+' has to be replaced with the variable bound by the quantifier.';
 	}
 	if(n==0) {fillD(l,sc);} // set dth, sig, avl, and frv properties
 
@@ -82,9 +86,7 @@ function ckAE(l,n) {
 	if(l.lin.length!=1) {
 		throw flag+'There is a problem with line citation. The rule must be applied to one line.';
 	}
-	console.log(PROOF[l.lin[0]-1].tr.length!=2);
-	console.log(!isQ(PROOF[l.lin[0]-1].tr[0]));
-	console.log(PROOF[l.lin[0]-1].tr[0][0]!='A');
+
 	if(PROOF[l.lin[0]-1].tr.length!=2 || !isQ(PROOF[l.lin[0]-1].tr[0]) || PROOF[l.lin[0]-1].tr[0][0]!='A') {
 		throw flag+'The formula the rule is being applied to is not universally quantified.';
 	}
@@ -114,7 +116,6 @@ function ckEI(l,n) {
 	if(iv=='_') {
 		throw flag+'The formula on line '+l.lin[0]+' is not an instance of the formula being derived.';
 	}
-
 	var x = areAvl(l.lin,l.avl);
 	if(x>=0) {
 		throw flag+'Rule line '+x+' is not available at this stage of the proof.  The following lines are available: '+l.avl.join(',');
@@ -157,14 +158,13 @@ function ckEE(l,n) {
 	}
 
 	if(n==0) {fillD(l,sc);} // set dth, sig, avl, and frv properties
-
 	if(l.frv.indexOf(iv)>=0) {
-		throw flag+'The flagged term \''+iv+'\' introduced in the assumption on line '+sa+' cannot occur in the formula being derived.';
+		throw flag+'The flagged name \''+iv+'\' introduced in the assumption on line '+sa+' cannot occur in the formula being derived.';
 	}
 
 	var freevars = frvList(PROOF[sa-1].avl);
 	if(freevars.indexOf(iv)>=0) {
-		throw flag+'Flagging violation.  The flagged term \''+iv+'\' introduced in the assumption you are citing already occurs outside the subproof.'
+		throw flag+'Flagging violation.  The flagged term \''+iv+'\' introduced in the assumption  on line '+sa+' already occurs outside the subproof.';
 	}
 
 	if(!same(l.sig,PROOF[sc-1].sig.slice(0,PROOF[sc-1].sig.length-1))) {
@@ -187,6 +187,7 @@ function ckIDI(l,n) {
 	l.dth = l.sig.length;
 	l.avl = gtAvl(l);
 	l.frv = freeVars(l.tr);
+	if(hasFreeVar(l.frv)) {throw "[ERROR]: the formula "+l.frm+" contains a free variable.";}
 }
 
 // IDE: Identity Elimination

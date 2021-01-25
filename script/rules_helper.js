@@ -8,6 +8,7 @@ function fillND(l) {
 	l.dth = l.sig.length;
 	l.avl = PROOF[l.cnt-2].avl.slice(0).concat(l.cnt-1);
 	l.frv = freeVars(l.tr);
+	if(hasFreeVar(l.frv)) {throw "[ERROR]: the formula "+l.frm+" contains a free variable.";}
 }
 
 // Fills the dth, sig, avl, and frv properties of lines with discharge rules
@@ -21,7 +22,8 @@ function fillD(l,sc) {
 	} else {l.sig = PROOF[l.cnt-2].sig.slice(0);}
 	l.dth = l.sig.length;
 	l.avl = gtAvl(l);
-	l.frv = freeVars(l.tr)
+	l.frv = freeVars(l.tr);
+	if(hasFreeVar(l.frv)) {throw "[ERROR]: the formula "+l.frm+" contains a free variable.";}
 }
 
 // Line -> [Int]
@@ -67,7 +69,8 @@ function same(s1,s2) {
 }
 
 // [Int] -> [Char]
-// Takes a list of line numbers and returns a list of any free variables occurring among those lines.
+// Takes a list of line numbers and returns a list of any free terms (variables
+// and constants) occurring among those lines.
 function frvList(l) {
 	var out = [];
 	for(var i=0;i<l.length;i++) {
@@ -131,8 +134,8 @@ function mkTmp(ar) {
 }
 
 // Tree -> [Char]
-// Takes a parse tree and returns an array containing all the free variables/constants
-// in that parse tree.
+// Takes a parse tree and returns an array containing all the free terms
+// (variables and constants) in that parse tree.
 function freeVars(ar) {
 	function mk(a,v) {
 		if(a.length==2 && isQ(a[0])) {
@@ -145,7 +148,7 @@ function freeVars(ar) {
 		} else {
 			var out = [];
 			for(var i=0;i<a.length;i++) {
-				if(isV(a[i]) && (v.indexOf(a[i])<0)) {
+				if(isT(a[i]) && (v.indexOf(a[i])<0)) {
 					out.push(a[i]);
 				}
 			}
@@ -155,10 +158,21 @@ function freeVars(ar) {
 	return mk(ar,[]);
 }
 
+// [Char] -> boolean
+// Takes the output from the freeVars function (a list of terms occuring free in
+// a formula) and determines if it contains any variables.
+function hasFreeVar(ar) {
+	var out = false;
+	for(i=0;i<ar.length;i++) {
+		if(isV(ar[i])) {out = true;}
+	}
+	return out;
+}
+
 // (Tree,Tree,Wff) -> Boolean
 // Takes the parse tree of an identity statement, the parse tree of a formula 1, and a
 // formula 2 to determine if you can get to the formula 2 from formula 1 by substituting
-// one or more (not necessarily all!) occurrences of the first constant from the identity
+// one or more (not necessarily all) occurrences of the first constant from the identity
 // with the second constant from the identity.
 function checkID(id,t1,f2) {
 	var f1 = unparse(t1);

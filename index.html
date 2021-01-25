@@ -40,7 +40,8 @@ THE SOFTWARE.
 <script src='script/rules_ql.js' type="text/javascript"></script>
 <script src='script/rules_siti_pl.js' type="text/javascript"></script>
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style/fitch.css">
 
 
@@ -109,10 +110,10 @@ THE SOFTWARE.
 			<option value='&lt;&gt;I'>&lt;&gt;I</option>
 			<option value='&lt;&gt;E'>&lt;&gt;E</option>
 			<option value='~I'>~I</option>
-			<option value='~E'>~E</option>
+			<option value='#I'>#I</option>
 			<option value='IP'>IP</option>
 			<!-- <option value='DN'>DN</option> -->
-			<option value='Flag'>Flag (for AI)</option>
+			<option value='Flag'>Flag</option>
 			<option value='EI'>EI</option>
 			<option value='EE'>EE</option>
 			<option value='AI'>AI</option>
@@ -221,7 +222,7 @@ THE SOFTWARE.
 
 <br>
 <div class='note'>
-NOTE: the program lets you drop the outermost parentheses on formulas with a binary main connective, e.g. P>(Q&R) rather than (P>(Q&R)).  Since the letter 'v' is used for disjunction, it can't be used as a variable or individual constant.
+NOTE: the program lets you drop the outermost parentheses on formulas with a binary main connective, e.g. P>(Q&R) rather than (P>(Q&R)).  Since the letter 'v' is used for disjunction, it can't be used as a variable or a name.
 </div>
 <br>
 
@@ -240,8 +241,8 @@ NOTE: the program lets you drop the outermost parentheses on formulas with a bin
 
 		<table class='info'>
 			<tr><th colspan='2'>Non-Logical Symbols</th></tr>
-			<tr><td>Individual Constants</td><td>a,b,c,d,e,f...</td></tr>
-			<tr><td>Individual Variables</td><td>u,w,x,y,z...</td></tr>
+			<tr><td>Names</td><td>a,b,c,d,...,t</td></tr>
+			<tr><td>Variables</td><td>u,w,x,y,z</td></tr>
 			<tr><td>Propositional Constants</td><td>A ... Z</td></tr>
 			<tr><td>Predicate Constants (any arity)</td><td>A ... Z</td></tr>
 		</table>
@@ -263,7 +264,7 @@ NOTE: the program lets you drop the outermost parentheses on formulas with a bin
 </tr>
 
 
-<tr>
+<!-- <tr>
 <td><a href='javascript:void(0);' onclick='exp("srulc");' id='srulctrigger'>[+] Rules for Truth-Functional Logic</a></td>
 </tr>
 
@@ -380,12 +381,12 @@ NOTE: the order in which  rule lines are cited is important for multi-line rules
 
 		<td class='brd'>
 			<table class='rule'>
-				<tr><th colspan='2'>Rule of &not;E</th></tr>
+				<tr><th colspan='2'>Rule of &bot;I (aka &not;E)</th></tr>
 				<tr><td class='cntc'>j</td><td class='frmc'><div><p>~p</p></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'></td><td class='frmc'><div><p>:</p></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'>k</td><td class='frmc'><div><p>p</p></div></td><td class='rulc'></td></tr>
 				<tr><td class='cntc'></td><td class='frmc'><div><p>:</p></div></td><td class='rulc'></td></tr>
-				<tr><td class='cntc'></td><td class='frmc'><div><p>#</p></div></td><td class='rulc'><div>~E j,k </div></td></tr>
+				<tr><td class='cntc'></td><td class='frmc'><div><p>#</p></div></td><td class='rulc'><div>#I j,k </div></td></tr>
 			</table>
 		</td>
 
@@ -422,10 +423,10 @@ NOTE: the order in which  rule lines are cited is important for multi-line rules
 	</table>
 
 </td>
-</tr>
+</tr> -->
 
 
-<tr>
+<!-- <tr>
 <td><a href='javascript:void(0);' onclick='exp("qrulc");' id='qrulctrigger'>[+] Rules for First-Order Logic</a></td>
 </tr>
 
@@ -510,9 +511,9 @@ NOTE: as with the truth-functional rules, the order in which lines are cited mat
 	</table>
 
 </td>
-</tr>
+</tr> -->
 
-<tr>
+<!-- <tr>
 <td><a href='javascript:void(0);' onclick='exp("drulc");' id='drulctrigger'>[+] Derived Rules</a></td>
 </tr>
 
@@ -540,18 +541,37 @@ NOTE: as with the truth-functional rules, the order in which lines are cited mat
 	<li>(Imp): A&gt;B -||- ~AvB</li>
 	<li>(NegImp): ~(A&gt;B) -||- A&and;~B</li>
 	<li>(Com): A*B |- B*A</li>
-<!--
+<!- -
 	<li>(Dist1): A&and;(BvC) -||- (A&and;B)v(A&and;C)</li>
 	<li>(Dist2): Av(B&and;C) -||- (AvB)&and;(AvC)</li>
 	<li>(SDN1): A*B pattern</li>
 	<li>(SDN2): ~(A*B) pattern</li>
- -->
+ - ->
 	<li>(LEM): |- Av~A</li>
 	</ul>
 
 
 
 
+</td>
+</tr> -->
+
+<tr>
+	<td><a href='javascript:void(0);' onclick='exp("allrulc");' id='allrulctrigger'>[+] Inference Rules</a></td>
+</tr>
+
+<tr>
+
+<td id='allrulc'>
+	<br>
+
+	<div class="note">
+	A description of the rules this program implements can be found <a href='samples/quick-ref-rules.pdf'>in this pdf</a>.  See the <a href='https://github.com/mrieppel/forallxsyr'>forallx@syr</a> textbook for more details on the rules.  Note that the order in which line numbers are cited matters for most multi-line rules.   For example, in an application of conditional elimination with citation "&rarr;E j,k", line j must be the conditional, and line k must be its antecedent, <em>even if</em> line k actually <em>precedes</em> line j in the proof.  The only multi-line rules which are set up so that order doesn't matter are &and;I and &not;E.
+	<br>
+	<br>
+	The rule selection menu in FitchFX has different abbreviations for the rules.  For example: >E instead of &rarr;E, or &amp;E instead of &and;E, or #I instead of &bot;I.  See the "Symbols" reference above for the keyboard substitutes that FitchFX uses for the various logical symbols.
+  </div>
+	<br>
 </td>
 </tr>
 
@@ -597,7 +617,7 @@ NOTE: as with the truth-functional rules, the order in which lines are cited mat
 
 
 <div id='refnote'>
-Click the "Reference" tab for information on what logical symbols to use.
+Click the "Reference" for what keyboard substitutes to use for the logical symbols.
 </div>
 
 

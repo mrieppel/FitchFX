@@ -28,7 +28,7 @@ function Line(cnt,frm,tr,rul,seq,lin,sig,dth,avl,frv) {
 	this.sig = sig; // holds line signature as array of ints (each subproof has a signature, and lines in the same subproof share a signature)
 	this.dth = dth; // holds line depth as int (NB dth = sig.length)
 	this.avl = avl; // holds the available lines (NB avl = [lines whose sig is a subset of this line's sig])
-	this.frv = frv; // hold free variables as a char array
+	this.frv = frv; // hold free terms (variables and names) as a char array
 }
 
 var PROOF = []; // array to hold proof lines

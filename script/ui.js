@@ -38,12 +38,12 @@ function show(id) {
 function exp(x) {
 	var el = document.getElementById(x);
 	var tr = document.getElementById(x+'trigger');
-	var dic = {sync:'Symbols', srulc:'Rules for Truth-Functional Logic', qrulc:'Rules for First-Order Logic', drulc:'Derived Rules', exc: 'Examples'};
+	var dic = {sync:'Symbols', allrulc:'Inference Rules', srulc:'Rules for Truth-Functional Logic', qrulc:'Rules for First-Order Logic', drulc:'Derived Rules', exc: 'Examples'};
 	if(el.style.display=='none' || el.style.display=='' ) {
 		el.style.display = 'block';
 		tr.innerHTML = '[–] '+dic[x];
 	} else {
 		el.style.display = 'none';
 		tr.innerHTML = '[+] '+dic[x];
-	}	
+	}
 }
