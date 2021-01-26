@@ -1,7 +1,7 @@
 FitchFX
 =======
 
-FitchFX is a web app written in JavaScript that lets users construct proofs in a Fitch-style natural deduction system, and export verified proofs in plain text or LaTeX.  It is a modification of the [FitchJS](https://github.com/mrieppel/fitchjs) program, incorporating the notation and rules I use in my version of the forallx textbook, [forall x @syr](https://github.com/mrieppel/forallxsyr). The Fitch proofs are drawn using the [D3.js](http://d3js.org/) library.  If you come across any bugs, please email me at: mrieppel at gmail dot com.
+FitchFX is a web app written in JavaScript that lets users construct proofs in a Fitch-style natural deduction system, and export verified proofs in plain text or LaTeX.  It is a modification of the [FitchJS](https://github.com/mrieppel/fitchjs) program, incorporating the notation and rules I use in my version of the forallx textbook, [forallx@syr](https://github.com/mrieppel/forallxsyr). The Fitch proofs are drawn using the [D3.js](http://d3js.org/) library.  If you come across any bugs, please email me at: mrieppel at gmail dot com.
 
 A live version of the program is [here](https://mrieppel.github.io/FitchFX/).
 
@@ -27,6 +27,6 @@ Here's a brief description of the content of the various javascript files:
 
 * `script/validate.js`: code to validate the user input, e.g. checking for well-formedness of input formulas, and to dispatch the user input to the appropriate rule checking code.
 
-Thanks to Fred Mesnard and Noah Lanning for bug reports!
+Thanks to Fred Mesnard, Noah Lanning, and Ian York for bug reports!
 
-(c) Michael Rieppel 2015-2020. Released under the MIT License.  See LICENSE above for more information.
+(c) Michael Rieppel 2015-2021. Released under the MIT License.  See LICENSE above for more information.

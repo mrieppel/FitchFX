@@ -1,8 +1,6 @@
 \documentclass[11pt]{article}
-\usepackage{fitch,amssymb}
+\usepackage{fitch-kluw}
 
-\let\oldsim\sim
-\renewcommand{\sim}{{\oldsim}}
 
 
 \begin{document}
@@ -29,7 +27,7 @@
 \fa \fh (P\land \lnot P) & Assumption\\
 \fa \fa P & $\land$E  1\\
 \fa \fa \lnot P & $\land$E  1\\
-\fa \fa \bot  & $\lnot$E  2,3\\
+\fa \fa \bot  & $\bot$I  2,3\\
 \fa \lnot (P\land \lnot P) & $\lnot$I  1-4\\
 \end{fitch}
 
@@ -44,10 +42,10 @@
 \fa \fh (\lnot A\land \lnot B) & Assumption\\
 \fa \fa \fh A & Assumption\\
 \fa \fa \fa \lnot A & $\land$E  2\\
-\fa \fa \fa \bot  & $\lnot$E  3,4\\
+\fa \fa \fa \bot  & $\bot$I 3,4\\
 \fa \fa \fh B & Assumption\\
 \fa \fa \fa \lnot B & $\land$E  2\\
-\fa \fa \fa \bot  & $\lnot$E  6,7\\
+\fa \fa \fa \bot  & $\bot$I  6,7\\
 \fa \fa \bot  & $\lor$E  1,3-5,6-8\\
 \fa \lnot (\lnot A\land \lnot B) & $\lnot$I  2-9\\
 \end{fitch}
@@ -84,7 +82,7 @@
 \fa \fa \fa \fa \fa Fa & $\land$E  3\\
 \fa \fa \fa \fa \fa \lnot Fb & $\land$E  3\\
 \fa \fa \fa \fa \fa Fb & =E  4,5\\
-\fa \fa \fa \fa \fa \bot  & $\lnot$E  6,7\\
+\fa \fa \fa \fa \fa \bot  & $\bot$I  6,7\\
 \fa \fa \fa \fa \lnot a=b & $\lnot$I  4-8\\
 \fa \fa \fa ((Fa\land \lnot Fb)\rightarrow \lnot a=b) & $\rightarrow$I  3-9\\
 \fa \fa \forall y((Fa\land \lnot Fy)\rightarrow \lnot a=y) & $\forall$I  2-10\\
