@@ -43,7 +43,7 @@ function ckRest(l,n) {
   	else if(r=='<>I') {return ckBCI(l,n);}
   	else if(r=='<>E') {return ckBCE(l,n);}
   	else if(r=='~I') {return ckNI(l,n);}
-   	else if(r=='#I') {return ckNE(l,n);} // Absurdity Introduction, aka Negation Elimination
+   	else if(r=='~E') {return ckNE(l,n);}
    	else if(r=='IP') {return ckIP(l,n);}
    	// else if(r=='DN') {return ckDN(l,n);} Double Negation Elimination Rule; now use SI/TI DN rule
   	else if(r=='Flag') {return ckFLG(l,n);}

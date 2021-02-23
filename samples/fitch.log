@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  26 JAN 2021 12:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  23 FEB 2021 10:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -201,7 +201,7 @@ Here is how much of TeX's memory you used:
 nts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy10.pfb>
-Output written on fitch.pdf (2 pages, 36951 bytes).
+Output written on fitch.pdf (2 pages, 36938 bytes).
 PDF statistics:
  23 PDF objects out of 1000 (max. 8388607)
  15 compressed objects within 1 object stream
