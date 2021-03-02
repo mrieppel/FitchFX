@@ -140,10 +140,10 @@ function check_goal(f) {
 		f = '('+f+')';
 		t = parse(f);
 		if(t.length==0) {
-			throw "ERROR: goal formula is not well formed.";
+			throw "ERROR: conclusion is not well formed or contains an unrecognized character.";
 		}
 	}
-	return f;
+	return unparse(t);
 }
 
 // inserts a goal formula into GOALS and draw to gls svg
@@ -334,7 +334,6 @@ function import_proof() {
 // element is the extracted proof, second is the extracted problem (from the problem line)
 function extract_proof() {
 	var proof = document.getElementById('importarea').value;
-
 	if(proof.indexOf("Paste a previously")==0) {throw "ERROR: paste a proof into the textarea first.";}
 
 	var prePROOF = [];
@@ -360,7 +359,6 @@ function extract_proof() {
 		tmp = next_line(proof);
 	}
 	if(proof.length==0) {return nope();} // error if no proof found
-
 	tmp = next_line(proof);
 
 	while(tmp[0].length!=0) { // collects proof lines till we run out

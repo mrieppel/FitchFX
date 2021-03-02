@@ -37,11 +37,11 @@ function parse(s) {
 	var s2 = [];
 	if(parseQ(s)) {
 		s1 = parse(s.substring(2));
-		return s1.length ? [s.substring(0,2),s1] : [];
+		return s1.length ? [toStand(s[0])+s[1],s1] : [];
 	}
 	if(isU(s[0])) {
 		s1 = parse(s.substring(1));
-		return s1.length ? [s[0],s1] : [];
+		return s1.length ? [toStand(s[0]),s1] : [];
 	}
 	if(s[0] =='(' && s[s.length-1]==')') {
 		var a = gSub(s);
@@ -51,7 +51,7 @@ function parse(s) {
 			s1 = parse(a[0]);
 			s2 = parse(a[2]);
 			if(s1.length && s2.length) {
-				return [s1,a[1],s2];
+				return [s1,toStand(a[1]),s2];
 			} else {return [];}
 		}
 	}
@@ -146,7 +146,7 @@ function gSub(s) {
 // takes a string and determines if it begins with a binary connective.  If so, returns
 // the length of the connective, otherwise returns 0.
 function isB(s) {
-	var bc = ['&','v','>','<>','\u2227','\u2228','\u2192','\u2194'];
+	var bc = ['&','^','v','>','<>','\u2227','\u2228','\u2192','\u2194'];
 	for(var i=0;i<bc.length;i++) {
 		if(s.indexOf(bc[i]) == 0) {
 			return bc[i].length;
@@ -177,6 +177,25 @@ function isC(c) {
 
 // RICHARDIFY THE FORMULA
 //=======================
+
+// String -> String
+// Takes a logical operator as entered by user and returns the standard
+// symbol for that operator used by the program internally; this lets users
+// enter e.g. ^ instead of & for conjunction, or ¬ instead of ~ for negation
+function toStand(s) {
+	switch(s) {
+		case '\u00AC' : return '~';
+		case '\u2227' : return '&';
+		case '^' : return '&';
+		case '\u2228' : return 'v';
+		case '\u2192' : return '>';
+		case '\u2194' : return '<>';
+		case '\u22A5' : return '#';
+		case '\u2200': return 'A';
+		case '\u2203' : return 'E';
+		default: return s;
+	}
+}
 
 // String -> String
 // Takes a formula and performs unicode substitutions.  Also works "in reverse".

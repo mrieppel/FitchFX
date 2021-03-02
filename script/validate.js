@@ -7,15 +7,12 @@ function ckSyn(l) {
 		throw 'ERROR: select a rule.';
 	}
 	if(l.tr.length==0 && l.rul!='Flag') {
-		throw 'ERROR: Formula is malformed.';
+		throw 'ERROR: Formula is malformed or contains an unrecognized character.';
 	}
 	if(l.rul=='Flag' && !isT(l.frm)) {
 		throw 'ERROR: Flagged term is malformed.'
 	}
-	var x = badchar(l.frm);
-	if(x>=0) {
-		throw 'ERROR: the formula you entered contains the unrecognized character \''+l.frm[x]+'\'.  See the syntax guide under the Reference tab.';
-	}
+	l.frm = isT(l.frm) ? l.frm : unparse(l.tr);
 	if(!cklin(l.lin)) {
 		throw 'ERROR: Rule lines are malformed';
 	}
@@ -175,16 +172,4 @@ function isInt(s) {
 // Takes an array and removes duplicate elements
 function rmDup(a) {
 	return a.filter(function(el,pos) {return a.indexOf(el)==pos;});
-}
-
-// String -> Int
-// Checks if the string contains any inadmissible characters
-function badchar(s) {
-	var x = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz()~&<>=#';
-	for(var i=0;i<s.length;i++) {
-		if(x.indexOf(s[i])<0) {
-			return i;
-		}
-	}
-	return -1;
 }
