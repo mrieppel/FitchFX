@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -229,10 +228,10 @@ NOTE: the program lets you drop the outermost parentheses on formulas with a bin
 		<table class='info'>
 			<tr><th colspan='2'>Logical Symbols</th></tr>
 			<tr><td>Negation</td><td>~</td></tr>
-			<tr><td>Conjunction</td><td>&amp; or ^</tr>
-			<tr><td>Disjunction</td><td>v</td></tr>
-			<tr><td>Conditional</td><td>&gt;</td></tr>
-			<tr><td>Biconditional</td><td>&lt;&gt;</td></tr>
+			<tr><td>Conjunction</td><td>&amp; or /\ or ^</tr>
+			<tr><td>Disjunction</td><td>v or \/</td></tr>
+			<tr><td>Conditional</td><td>&gt; or -&gt;</td></tr>
+			<tr><td>Biconditional</td><td>&lt;&gt; or &lt;-&gt;</td></tr>
 			<tr><td>Absurdity</td><td>#</td></tr>
 			<tr><td>Existential Quantifier</td><td>E</td></tr>
 			<tr><td>Universal Quantifier</td><td>A</td></tr>
@@ -569,7 +568,7 @@ NOTE: as with the truth-functional rules, the order in which lines are cited mat
 	A description of the rules this program implements can be found <a href='samples/quick-ref-rules.pdf'>in this pdf</a>.  See the <a href='https://github.com/mrieppel/forallxsyr'>forallx@syr</a> textbook for more details on the rules.  Note that the order in which line numbers are cited matters for most multi-line rules.   For example, in an application of conditional elimination with citation "&rarr;E j,k", line j must be the conditional, and line k must be its antecedent, <em>even if</em> line k actually <em>precedes</em> line j in the proof.  The only multi-line rules which are set up so that order doesn't matter are &and;I and &not;E.
 	<br>
 	<br>
-	The rule selection menu in FitchFX has different abbreviations for the rules.  For example: >E instead of &rarr;E, or &amp;E instead of &and;E, or #I instead of &bot;I.  See the "Symbols" reference above for the keyboard substitutes that FitchFX uses for the various logical symbols.
+	The rule selection menu in FitchFX has different abbreviations for the rules.  For example: >E instead of &rarr;E, or &amp;E instead of &and;E.  See the "Symbols" reference above for the keyboard substitutes that FitchFX uses for the various logical symbols.
   </div>
 	<br>
 </td>

@@ -146,7 +146,7 @@ function gSub(s) {
 // takes a string and determines if it begins with a binary connective.  If so, returns
 // the length of the connective, otherwise returns 0.
 function isB(s) {
-	var bc = ['&','^','v','>','<>','\u2227','\u2228','\u2192','\u2194'];
+	var bc = ['&','^','/\\','v','\\/','>','->','<>','<->','\u2227','\u2228','\u2192','\u2194'];
 	for(var i=0;i<bc.length;i++) {
 		if(s.indexOf(bc[i]) == 0) {
 			return bc[i].length;
@@ -186,15 +186,25 @@ function toStand(s) {
 	switch(s) {
 		case '\u00AC' : return '~';
 		case '\u2227' : return '&';
-		case '^' : return '&';
+		case '^'      : return '&';
+		case '/\\'		: return '&';
 		case '\u2228' : return 'v';
+		case '\\/'    : return 'v';
 		case '\u2192' : return '>';
+		case '->'     : return '>';
 		case '\u2194' : return '<>';
+		case '<->'    : return '<>';
 		case '\u22A5' : return '#';
 		case '\u2200': return 'A';
 		case '\u2203' : return 'E';
 		default: return s;
 	}
+}
+
+
+function foo() {
+	el = document.getElementById('premises').value;
+	return el;
 }
 
 // String -> String
