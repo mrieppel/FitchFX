@@ -55,7 +55,7 @@ function parse(s) {
 			} else {return [];}
 		}
 	}
-	else {return isA(s) ? s.split('') : []}
+	else {return isA(s) ? s.split('').map(toStand) : []} // map with toStand
 }
 
 // String -> Bool
