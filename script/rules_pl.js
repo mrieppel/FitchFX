@@ -159,14 +159,26 @@ function ckCNE(l,n) {
 	if(l.lin.length!=2) {
 		throw flag+'Rule must be applied to two lines.';
 	}
-	if(PROOF[l.lin[0]-1].tr.length!=3 || PROOF[l.lin[0]-1].tr[1]!='>') {
-		throw flag+'The first rule line must be a conditional. (Remember: cite the line of the conditional first, the line of its antecedent second.)'
+
+	var clin = 0; // line of antecedent
+	var alin = 0; // line of consequent
+	if(PROOF[l.lin[0]-1].tr.length==3 && PROOF[l.lin[0]-1].tr[1]=='>' && unparse(PROOF[l.lin[0]-1].tr[0]) == PROOF[l.lin[1]-1].frm) {
+		clin = l.lin[0]-1;
+		alin = l.lin[1]-1;
+	} else if (PROOF[l.lin[1]-1].tr.length==3 && PROOF[l.lin[1]-1].tr[1]=='>' && unparse(PROOF[l.lin[1]-1].tr[0]) == PROOF[l.lin[0]-1].frm) {
+		clin = l.lin[1]-1;
+		alin = l.lin[0]-1;
+	} else {
+		throw flag+'The rule lines must contain a conditional and the antecedent of that conditional.'
 	}
-	if(PROOF[l.lin[1]-1].frm!=unparse(PROOF[l.lin[0]-1].tr[0])) {
-		throw flag+'The second rule line must be the antecedent of the conditional on the first rule line. (Remember: cite the line of the conditional first, the line of its antecedent second.)';
-	}
-	if(l.frm!=unparse(PROOF[l.lin[0]-1].tr[2])) {
-		throw flag+'The formula being derived must be the consequent of the conditional on the first rule line.';
+	// if(PROOF[l.lin[0]-1].tr.length!=3 || PROOF[l.lin[0]-1].tr[1]!='>') {
+	// 	throw flag+'The first rule line must be a conditional. (Remember: cite the line of the conditional first, the line of its antecedent second.)'
+	// }
+	// if(PROOF[l.lin[1]-1].frm!=unparse(PROOF[l.lin[0]-1].tr[0])) {
+	// 	throw flag+'The second rule line must be the antecedent of the conditional on the first rule line. (Remember: cite the line of the conditional first, the line of its antecedent second.)';
+	// }
+	if(l.frm!=unparse(PROOF[clin].tr[2])) {
+		throw flag+'The formula being derived must be the consequent of the conditional.';
 	}
 
 	var x = areAvl(l.lin,l.avl);

@@ -272,7 +272,7 @@ NOTE: the program lets you drop the outermost parentheses on formulas with a bin
 <br>
 
 <div class="note">
-NOTE: the order in which  rule lines are cited is important for multi-line rules.  For example, in an application of conditional elimination with citation "&rarr;E j,k", line j must be the conditional, and line k must be its antecedent, <em>even if</em> line k actually <em>precedes</em> line j in the proof.  The only multi-line rules which are set up so that order doesn't matter are &and;I and &not;E.
+NOTE: some multi-line rules require lines to be cited in a certain order.  For example, in an application of disjunction elimination with citation "&or;E j, k-l, m-n", line j must be the disjunction, k must be an assumption of the left disjuct, and m an assumption of the right disjunct.  The only multi-line rules that are set up so that order doesn't matter are &and;I, &arr;E, and &not;E.
 </div>
 <br>
 
@@ -565,7 +565,7 @@ NOTE: as with the truth-functional rules, the order in which lines are cited mat
 	<br>
 
 	<div class="note">
-	A description of the rules this program implements can be found <a href='samples/quick-ref-rules.pdf'>in this pdf</a>.  See the <a href='https://github.com/mrieppel/forallxsyr'>forallx@syr</a> textbook for more details on the rules.  Note that the order in which line numbers are cited matters for most multi-line rules.   For example, in an application of conditional elimination with citation "&rarr;E j,k", line j must be the conditional, and line k must be its antecedent, <em>even if</em> line k actually <em>precedes</em> line j in the proof.  The only multi-line rules which are set up so that order doesn't matter are &and;I and &not;E.
+	A description of the rules this program implements can be found <a href='samples/quick-ref-rules.pdf'>in this pdf</a>.  See the <a href='https://github.com/mrieppel/forallxsyr'>forallx@syr</a> textbook for more details on the rules.  Note that some multi-line rules require lines to be cited in a certain order.  For example, in an application of disjunction elimination with citation "&or;E j, k-l, m-n", line j must be the disjunction, k must be an assumption of the left disjuct, and m an assumption of the right disjunct.  The only multi-line rules that are set up so that order doesn't matter are &and;I, &rarr;E, and &not;E.
 	<br>
 	<br>
 	The rule selection menu in FitchFX has different abbreviations for the rules.  For example: >E instead of &rarr;E, or &amp;E instead of &and;E.  See the "Symbols" reference above for the keyboard substitutes that FitchFX uses for the various logical symbols.
