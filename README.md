@@ -29,4 +29,4 @@ Here's a brief description of the content of the various javascript files:
 
 Thanks to Tianyiming Jing, Fred Mesnard, Noah Lanning, and Ian York for bug reports!
 
-(c) Michael Rieppel 2015-2021. Released under the MIT License.  See LICENSE above for more information.
+(c) Michael Rieppel 2015-2023. Released under the MIT License.  See LICENSE above for more information.
