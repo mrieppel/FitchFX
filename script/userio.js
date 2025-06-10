@@ -540,7 +540,7 @@ function errmess(n,mess) {
 
 // NOTE: Eventlistener as user types to replace input values with logical symbols
 // Ultimately decided not to use this, may be disadvantageous to users learning
-// keyboard substitutes
+// keyboard substitutes.
 /* 
 // Inspired by Nadeem Nazer [https://github.com/nadeemn/fitchjs]
 document.addEventListener('DOMContentLoaded', () => {
