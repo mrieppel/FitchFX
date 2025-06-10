@@ -57,7 +57,7 @@ THE SOFTWARE.
 		<a href='javascript:void(0);' onclick='disp("app");'><strong>Construct</strong></a>
 		</td>
 		<td id='expm'>
-		<a href='javascript:void(0);' onclick='disp("exp");'><strong>Export</strong></a>
+		<a href='javascript:void(0);' onclick='disp("exp");'><strong>Export / Import</strong></a>
 		</td>
 		<td id='refm'>
 		<a href='javascript:void(0);' onclick='disp("ref");'><strong>Reference</strong></a>
@@ -70,15 +70,15 @@ THE SOFTWARE.
 
 <table id='prbt'>
 	<tr>
-		<td>Premises</td>
+		<td>Premises (comma separated)</td>
 		<td></td>
 		<td>Conclusion</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td><input id='premises' placeholder='P>(~QvR), P' type='text' size='60'></td>
+		<td><input id='premises' type='text' size='60'></td>
 		<td>&#8866;</td>
-		<td><input id='conclusion' type='text' placeholder='Q>R' size='18'></td>
+		<td><input id='conclusion' type='text' size='18'></td>
 		<td><button onclick='setup_proof()'>Begin</button></td>
 	</tr>
 </table>
@@ -616,7 +616,7 @@ NOTE: as with the truth-functional rules, the order in which lines are cited mat
 
 
 <div id='refnote'>
-Click the "Reference" for what keyboard substitutes to use for the logical symbols.
+Click the "Reference" for what keyboard substitutes to use for the logical symbols.  Refresh your browser to start a new proof.
 </div>
 
 

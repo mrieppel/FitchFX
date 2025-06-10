@@ -58,6 +58,7 @@ function parse(s) {
 	else {return isA(s) ? s.split('').map(toStand) : []}
 }
 
+
 // String -> Bool
 // Determines if s is an atomic wff
 function isA(s) {
@@ -165,14 +166,14 @@ function isT(c) {
 // Determines if c is a variable.  NOTE: /[a-z]/.test(undefined) gives true!!!
 function isV(c) {
 	var cn = 'uwxyz';
-	return cn.indexOf(c)>=0;
+	return cn.includes(c);
 }
 
 // Char -> Bool
 // Determines if c is a constant
 function isC(c) {
 	var cn = 'abcdefghijklmnopqrst';
-	return cn.indexOf(c)>=0;
+	return cn.includes(c);
 }
 
 // RICHARDIFY THE FORMULA
@@ -187,7 +188,7 @@ function toStand(s) {
 		case '\u00AC' : return '~';
 		case '\u2227' : return '&';
 		case '^'      : return '&';
-		case '/\\'		: return '&';
+		case '/\\'	  : return '&';
 		case '\u2228' : return 'v';
 		case '\\/'    : return 'v';
 		case '\u2192' : return '>';

@@ -89,7 +89,7 @@ function draw() {
 		d3.selectAll(".del")
 			.attr("x",wr+FW)
 			.attr("y",(LH-OS))
-			.html(function(d) {return d.cnt>max && d.cnt==PROOF.length ? "&#x2717" : "";})
+			.html(function(d) {return d.cnt>max && d.cnt==PROOF.length ? "&#x232B" : "";})
 			.on("click",function() {clrlast();});	
 	}	
 }
@@ -144,7 +144,7 @@ function draw_goals() {
 	d3.selectAll(".gdel")
 		.attr("x",wf+FW)
 		.attr("y",(LH-OS))
-		.html(function(d,i) {return i==0 ? "&#x2717" : "";})
+		.html(function(d,i) {return i==0 ? "&#x232B" : "";})
 		.on("click",function() {delete_goal();});
 }
 

@@ -536,3 +536,87 @@ function errmess(n,mess) {
 	document.getElementById('dth').value = 'Plus 1';
 	show('rul');
 }
+
+
+// NOTE: Eventlistener as user types to replace input values with logical symbols
+// Ultimately decided not to use this, may be disadvantageous to users learning
+// keyboard substitutes
+/* 
+// Inspired by Nadeem Nazer [https://github.com/nadeemn/fitchjs]
+document.addEventListener('DOMContentLoaded', () => {
+		
+	const currentElement = document.querySelectorAll('#premises, #conclusion, #frm');
+	
+	currentElement.forEach(function(input) {
+		input.addEventListener('keydown', function(event) {
+			
+			const input = event.target;
+			const currentValue = input.value;
+			var cursorPosition = input.selectionStart;
+			const prev = currentValue.slice(cursorPosition - 1, cursorPosition);
+			const pprev = currentValue.slice(cursorPosition - 2, cursorPosition-1);
+			const nxt = currentValue.slice(cursorPosition,cursorPosition+1);
+			const ark = ['ArrowLeft','ArrowRight'].includes(event.key);
+			console.log(currentValue);
+			console.log(event.key,nxt,prev,pprev);
+			
+			if(!'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#~!&^=-><()/\\'.includes(event.key) && !ark) {return;}
+			
+			if(['>'].includes(event.key)) {
+				event.preventDefault();
+				if (['-','='].includes(prev) && pprev=='<') {
+					input.value = currentValue.slice(0,cursorPosition-2) + '↔' + currentValue.slice(cursorPosition);
+					cursorPosition = cursorPosition-2;
+				} else if (prev === '<') {
+					input.value = currentValue.slice(0, cursorPosition - 1) + '↔' + currentValue.slice(cursorPosition);
+					cursorPosition = cursorPosition-1;
+				} else if (['-','='].includes(prev)) {
+					input.value = currentValue.slice(0, cursorPosition - 1) + '→' + currentValue.slice(cursorPosition);
+					cursorPosition = cursorPosition-1;
+				} else {
+					input.value = currentValue.slice(0, cursorPosition) + '→' + currentValue.slice(cursorPosition);
+				}
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			}
+			else if(['~','-','!'].includes(prev) && event.key!='>') {
+				event.preventDefault();
+				input.value = currentValue.slice(0, cursorPosition-1) + '¬' + (ark ? '' : event.key) + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			}
+			else if(['&','^'].includes(event.key)) {
+				event.preventDefault();
+				input.value = currentValue.slice(0, cursorPosition) + '∧' + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			} else if(event.key=='\\' && prev=='/') {
+				event.preventDefault();
+				input.value = currentValue.slice(0, cursorPosition-1) + '∧' + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition;
+			} else if(event.key=='v') {
+				event.preventDefault();
+				input.value = currentValue.slice(0, cursorPosition) + '\u2228' + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			} else if(event.key=='/' && prev=='\\') {
+				event.preventDefault();
+				input.value = currentValue.slice(0, cursorPosition-1) + '\u2228' + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition;
+			} else if((isA(event.key) || event.key=='(') && pprev=='E'&& isV(prev)) {
+				event.preventDefault();
+				input.value = currentValue.slice(0,cursorPosition-2) + '\u2203' + prev + event.key + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			} else if(ark && pprev=='E' && isV(prev) && (isA(nxt) || nxt=='(')) {
+				event.preventDefault();
+				input.value = currentValue.slice(0,cursorPosition-2) + '\u2203' + prev + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			} else if((isA(event.key) || event.key=='(') && pprev=='A'&& isV(prev)) {
+				event.preventDefault();
+				input.value = currentValue.slice(0,cursorPosition-2) + '\u2200' + prev + event.key + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			} else if(ark && pprev=='A' && isV(prev) && (isA(nxt) || nxt=='(')) {
+				event.preventDefault();
+				input.value = currentValue.slice(0,cursorPosition-2) + '\u2200' + prev + currentValue.slice(cursorPosition);
+				input.selectionStart = input.selectionEnd = cursorPosition+1;
+			}
+		})
+	})
+})
+ */
